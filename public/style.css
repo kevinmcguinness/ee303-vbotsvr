@@ -1,0 +1,32 @@
+.site-header {
+  background-color: rgba(0, 0, 0, .85);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+  color: #8e8e8e;
+  transition: color .15s ease-in-out;
+  text-decoration: none;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.pad-left {
+  padding-left: 10px;
+}
+.container {
+  max-width: 960px;
+}
+#track-svg {
+  width: 615px;
+  height: 357px;
+  border: 1px solid #ccc;
+}
+.pins{
+  width: 100%;
+}
+
+.pins td {
+  vertical-align: top;
+}

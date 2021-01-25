@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <meta name="theme-color" content="#7952b3">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+
+
+  <title>EE303 sim</title>
+</head>
+<body>
+<div id="app">
+  <header class="site-header sticky-top py-1">
+    <nav class="container d-flex flex-column flex-md-row justify-content-between">
+      <a class="py-2" href="#" aria-label="Product">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-auto" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+        <span class="pad-left">EE303 Virtual Robot Simulator</span>
+        
+      </a>
+    </nav>
+  </header>
+  <main class="container">
+    <div class="row pt-5">
+      <div class="col-md-8">
+        <svg id="track-svg" width="254.62mm" height="147.96mm" version="1.1" viewBox="0 0 254.62 147.96" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+          <defs>
+            <marker id="TriangleOutM" overflow="visible" orient="auto">
+             <path transform="scale(.4)" d="m5.77 0-8.65 5v-10z" fill="#c00" fill-rule="evenodd" stroke="#c00" stroke-width="1pt"/>
+            </marker>
+           </defs>
+          
+          <g transform="translate(-20.032 -117.77)" fill="none" stroke="#000" stroke-width="3">
+           <path id="track" d="m201.88 174.23v34.588m-82.102 22.323v34.588m82.61-34.588v34.588m0-147.46v34.588m-83.537-34.588v34.588m155.8 39.143h-146.23m130.79 1.1581s-3.8603 56.669-56.669 56.978c-52.809 0.30882-78.132 0.1544-78.132 0.1544s-68.404 4.3235-69.176-20.846c-0.45613-14.87 5.6437-21.842 15.589-23.661 6.8886-1.2599 18.254 0.1193 24.712 3.2782 7.4696 3.6537 17.223 7.4224 26.713 7.5662 10.191 0.15441 24.086-3.9244 26.25-10.963s1.5441-12.971 1.5441-12.971m109.17-0.46324s-3.8603-56.669-56.669-56.978c-52.809-0.30882-78.132-0.15442-78.132-0.15442s-68.404-4.3235-69.176 20.846c-0.45613 14.87 5.6437 21.842 15.589 23.661 6.8886 1.2599 18.254-0.1193 24.712-3.2782 7.4696-3.6537 17.223-7.4224 26.713-7.5662 10.191-0.15441 24.086 3.9244 26.25 10.963s1.5441 12.971 1.5441 12.971"/>
+           <path id="wall" d="m25.351 171.97v40.07"/>
+          </g>
+
+
+          <g id="car2">
+            <g transform="translate(-136.24 -118.68)">
+              <rect x="162.74" y="129.37" width="4.5686" height="13.611" fill="#888a85" stroke="#888a85" stroke-width="2"/>
+              <g fill="#eeeeec" stroke="#888a85" stroke-width="2">
+              <rect x="150.04" y="123.36" width="7.3916" height="3.6172"/>
+              <rect x="150.04" y="145.55" width="7.3916" height="3.6172"/>
+              <ellipse cx="153.74" cy="136.18" rx="11.454" ry="11.454"/>
+              </g>
+              <path d="m152.94 136.19 9.5628 0.0786" fill="#c00" marker-end="url(#TriangleOutM)" stroke="#c00"/>
+              <circle cx="153.74" cy="136.18" r="1.5334" fill="#c00"/>
+            </g>
+           </g>
+         </svg>
+      </div>
+
+      <div class="col-md-4">
+        
+        <div class="row g-3">
+          <div class="col-12">
+            <label for="robotID" class="form-label">Robot ID</label>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Robot ID" id="id" v-model="idField">
+              <button type="submit" class="btn btn-primary" v-on:click="setRobotId()" :disabled="!idField">Set</button>
+            </div>
+          </div>
+        </div>
+        <div class="row g-3 mt-1">
+          <div class="col-6"> <button class="btn btn-primary w-100" v-on:click="start()" :disabled="!id">Start</button></div>
+          <div class="col-6"> <button class="btn btn-secondary w-100" v-on:click="stop()" :disabled="!id">Stop</button></div>
+        </div>
+
+        <div class="row g-3 mt-5">
+          <div class="col-12">
+            <label for="analogPIN" class="form-label">Analog Read/Write</label>
+            <div class="input-group">
+              <input type="number" class="form-control" placeholder="PIN" id="analogPIN" v-model="analogPin">
+              <input type="number" class="form-control" placeholder="Value" id="analogValue" v-model="analogValue">
+              <button type="submit" class="btn btn-warning" v-on:click="analogRead()" :disabled="!analogPin">Read</button>
+              <button type="submit" class="btn btn-dark" v-on:click="analogWrite()" :disabled="!analogPin || !analogValue"> Write</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-12">
+            <label for="digitalPIN" class="form-label">Digital Read/Write</label>
+            <div class="input-group">
+              <input type="number" class="form-control" placeholder="PIN" id="digitalPIN" v-model="digitalPin">
+              <input type="number" class="form-control" placeholder="Value" id="digitalValue" v-model="digitalValue">
+              <button type="submit" class="btn btn-warning" v-on:click="digitalRead()" :disabled="!digitalPin">Read</button>
+              <button type="submit" class="btn btn-dark" v-on:click="digitalWrite()" :disabled="!digitalPin || !digitalValue">Write</button>
+            </div>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+
+    <div class="row pt-5">
+      <div class="col-12">
+        <h5>Pins</h5>
+        <table class="pins">
+          <tr>
+            
+            <td>37</td>
+            <td class="pinName">Left Phase</td>
+            
+            <td>38</td>
+            <td class="pinName">Left PWM</td>
+            
+            <td>39</td>
+            <td class="pinName">Right Phase</td>
+            
+            <td>38</td>
+            <td class="pinName">Right PWM</td>
+            
+            <td>1</td>
+            <td class="pinName">Distance Sensor</td>
+          </tr>
+          <tr>
+            
+            <td>14</td>
+            <td class="pinName">Far left optical</td>
+            
+            <td>13</td>
+            <td class="pinName">Left optical</td>
+            
+            <td>11</td>
+            <td class="pinName">Middle optical</td>
+            
+            <td>9</td>
+            <td class="pinName">Right optical</td>
+            
+            <td>8</td>
+            <td class="pinName">Far right optical</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row pt-5">
+      <div v-bind:class="{'d-none': !errorText}" class="alert alert-warning" role="alert">
+        {{errorText}}
+      </div>
+    </div>
+
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+</body>
+</html>
