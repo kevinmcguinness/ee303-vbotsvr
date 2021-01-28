@@ -5,8 +5,8 @@ This is the simulator software for EE303. It is written in Javascript and Python
 
 ## Prerequsites
 
-- [NodeJS](https://nodejs.org/en/)
-- Python 3. Probably the easiest way to do this is by downloading the [Anaconda Python distribution](https://www.anaconda.com/products/individual)
+- Install [NodeJS](https://nodejs.org/en/) 14.x LTS.
+- Install Python 3. Probably the easiest way to install this is by downloading the [Anaconda Python distribution](https://www.anaconda.com/products/individual).
 
 ## Setup
 
@@ -258,3 +258,15 @@ Sample code for the above Python and Javascript controllers is available in the 
     python samples/controller.py
     node samples/controller.js
 ```
+
+## Controlling the robot from C++
+
+Note that the C++ development environment is a bit more challenging to setup that the Javascript and Python environments. In particular, you will need to install the [Boost C++ Libraries](https://www.boost.org/) to use Boost's [interprocess](https://www.boost.org/doc/libs/1_75_0/doc/html/interprocess.html) communication facilities. You can find instructions on how to compile and install Boost for your platform and C++ compiler in the [Boost documentation](https://www.boost.org/doc/libs/1_75_0/more/getting_started/). 
+
+Once Boost is installed, you can refer to the sample code in `samples\controller.cpp` to get started. The command for compiling and linking this file with the Visual C++ Terminal is:
+```
+    cl /EHsc /MD /I C:\boost_1_75_0 samples/controller.cpp /link /LIBPATH:C:\boost\lib 
+```
+You will need to compile with `clang` on Mac OS X or `clang/gcc/g++` on Linux.
+
+

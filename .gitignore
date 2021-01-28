@@ -2,6 +2,10 @@
 __pycache__
 bak
 bots
+.vs
+*.obj
+*.exe
+*.pdb
 
 .DS_Store
 node_modules
