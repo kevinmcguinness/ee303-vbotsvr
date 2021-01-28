@@ -85,6 +85,8 @@ To control the robot, you will need to write a program that reads and writes to 
 A good way to interact with memory mapped files in Python is to use the [memmap](https://numpy.org/doc/stable/reference/generated/numpy.memmap.html) function from the numpy library. The following code opens a memory mapped file as a 32-bit unsigned integer numpy array in read-write mode:
 
 ```python
+import numpy as np
+
 pins = np.memmap("bots/001/pins.dat", dtype=np.uint32, mode="r+", shape=(41,))
 ```
 
