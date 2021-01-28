@@ -193,7 +193,7 @@ async function openMmap(filename) {
     const stat = await fs.fstat(fd)
     const prot = mmap.PROT_WRITE | mmap.PROT_READ
     return await mmap.map(stat.size, prot, mmap.MAP_SHARED, fd)
-}1023
+}
 
 var pins = null
 openMmap("bots/001/pins.dat").then((result) => {
