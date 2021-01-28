@@ -32,6 +32,8 @@ Run the following command from a terminal:
 
 Point your browser at `http://localhost:8082` to view the user interface.
 
+![Screenshot](res/screenshot.png)
+
 ## Creating a new simulated bot
 
 Run the following Python command to create a new bot with id `001`
