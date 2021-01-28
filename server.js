@@ -122,6 +122,7 @@ app.post('/api/start', (req, res) => {
         return res.status(400).send(`bot ${id} already running`)
     }
 
+
     const process = spawn("python", 
         ["simulate.py", "--timeout", simulatorTimeout, '--bot-id', id], 
         {stdio: "inherit"})
@@ -132,7 +133,7 @@ app.post('/api/start', (req, res) => {
         delete bot.process
     })
 
-    console.log(`starting bot ${id} pid: ${bot.process.pid}`)
+    console.log(`starting bot ${id} pid: ${bot.process.pid} timeout: ${simulatorTimeout}`)
     res.sendStatus(200)
 })
 

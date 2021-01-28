@@ -22,6 +22,9 @@ uint32_t* pins;
 
 
 void analogWrite(int pin, int value) {
+    if (pin < 0 || pin > 40) {
+        throw std::invalid_argument("invalid pin");
+    }
     if (value < 0 || value > 1024) {
         throw std::invalid_argument("invalid value");
     }
@@ -29,6 +32,9 @@ void analogWrite(int pin, int value) {
 }
 
 void digitalWrite(int pin, int value) {
+    if (pin < 0 || pin > 40) {
+        throw std::invalid_argument("invalid pin");
+    }
     if (value != 0 && value != 1) {
         throw std::invalid_argument("invalid value");
     }
@@ -36,10 +42,16 @@ void digitalWrite(int pin, int value) {
 }
 
 int analogRead(int pin) {
+    if (pin < 0 || pin > 40) {
+        throw std::invalid_argument("invalid pin");
+    }
     return pins[pin];
 }
 
 int digitalRead(int pin) {
+    if (pin < 0 || pin > 40) {
+        throw std::invalid_argument("invalid pin");
+    }
     return pins[pin];
 }
 
