@@ -1,25 +1,21 @@
 import numpy as np
 from pathlib import Path
-from filelock import FileLock
 
 
 LOW, HIGH = 0, 1
 
 
 pins = None
-#lock = None
 
 
 def open_pinfile(filename="pins.dat"):
-    global pins, lock
-    #lockfile = str(filename) + ".lock"
+    global pins
     if pins is None:
         pinfile = Path(filename)
         mode = "w+"
         if pinfile.exists():
             mode = "r+"
         pins = np.memmap(filename, dtype=np.uint32, mode=mode, shape=(41,))
-    #lock = FileLock(lockfile)
     return pins
 
 

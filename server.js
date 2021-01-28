@@ -154,6 +154,32 @@ app.post('/api/stop', (req, res) => {
     res.sendStatus(200)
 })
 
+app.post('/api/pause', (req, res) => {
+    var id = req.body.id
+
+    if (!(id in bots)) {
+        return res.status(400).send(`no robot with id ${id}`)
+    }
+
+    const bot = bots[id]
+    bot.pins.writeInt32LE(1, 4 * 5)
+
+    res.sendStatus(200)
+})
+
+app.post('/api/resume', (req, res) => {
+    var id = req.body.id
+
+    if (!(id in bots)) {
+        return res.status(400).send(`no robot with id ${id}`)
+    }
+
+    const bot = bots[id]
+    bot.pins.writeInt32LE(0, 4 * 5)
+
+    res.sendStatus(200)
+})
+
 app.get('/api/state', (req, res) => {
     var id = req.query.id
 
@@ -180,7 +206,7 @@ app.get('/api/digitalRead', (req, res) => {
     const value = bot.pins.readInt32LE(4 * pin)
     
     //console.log("digitalRead", id, pin, value)
-    res.status(200).json({value})
+    res.status(200).send(value.toString())
 })
 
 app.get('/api/analogRead', (req, res) => {
@@ -198,7 +224,7 @@ app.get('/api/analogRead', (req, res) => {
     const value = bot.pins.readInt32LE(4 * pin)
 
     //console.log("analogRead", id, pin, value)
-    res.status(200).json({value})
+    res.status(200).send(value.toString())
 })
 
 app.post('/api/digitalWrite', (req, res) => {

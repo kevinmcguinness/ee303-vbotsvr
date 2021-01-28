@@ -98,6 +98,7 @@ class Robot(object):
         # state
         self.position = np.array([540, 470], dtype=np.float64)
         self.orientation = 0
+        self.lock = Sensor(5, "Lock")
 
         self.sprite = Image.open("res/robot.png")
 
@@ -109,6 +110,7 @@ class Robot(object):
         for sensor in self.optical_sensors:
             sensor.reset()
         self.distance_sensor.reset()
+        self.lock.reset()
 
 
 class Simulation(object):
@@ -190,6 +192,8 @@ class Simulation(object):
         self.state.orientation = self.robot.orientation
 
     def tick(self):
+        if self.robot.lock.value:
+            return
         self.actuate()
         self.sense()
 

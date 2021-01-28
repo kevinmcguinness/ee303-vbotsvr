@@ -100,7 +100,7 @@ var app = new Vue({
                     id: this.id, pin: this.analogPin
                 }
             }).then((response) => {
-                this.analogValue = response.data.value
+                this.analogValue = parseInt(response.data)
                 this.errorText = ''
             }).catch(this.createErrorHandler("Analog read error"))
         },
@@ -117,7 +117,7 @@ var app = new Vue({
                     id: this.id, pin: this.digitalPin
                 }
             }).then((response) => {
-                this.digitalValue = response.data.value
+                this.digitalValue = parseInt(response.data)
                 this.errorText = ''
             }).catch(this.createErrorHandler("Digital read error"))
         },
