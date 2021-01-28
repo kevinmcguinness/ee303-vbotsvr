@@ -110,7 +110,7 @@ def analogRead(pin):
     return pins[pin]
 
 def analogWrite(pin, value):
-    if value < 0 or value > 40:
+    if value < 0 or value > 1023:
         raise ValueError
     pins[pin] = value
     pins.flush()
