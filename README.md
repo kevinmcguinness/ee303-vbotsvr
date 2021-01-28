@@ -8,6 +8,15 @@ This is the simulator software for EE303. It is written in Javascript and Python
 - Install [NodeJS](https://nodejs.org/en/) 14.x LTS.
 - Install Python 3. Probably the easiest way to install this is by downloading the [Anaconda Python distribution](https://www.anaconda.com/products/individual).
 
+
+## Getting the code
+
+You can use:
+```
+git clone https://github.com/kevinmcguinness/ee303-vbotsvr.git
+```
+if you have [git](https://github.com/kevinmcguinness/ee303-vbotsvr.git) installed on your machine. Otherwise, just use the green *Code* button in github to download a ZIP file and unpack it on your machine. 
+
 ## Setup
 
 Run the following command from an terminal to install the necessary Python libraries. You may need to use the Anaconda Prompt to do this if you are using the Anaconda Python distribution.
