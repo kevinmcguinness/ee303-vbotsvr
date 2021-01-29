@@ -54,6 +54,12 @@ async function loadBots() {
     const dir = await fs.promises.opendir("bots");
     for await (const dirent of dir) {
         var id = dirent.name
+
+        // skip hidden files (.DS_store, etc.)
+        if (id.startsWith(".")) {
+            continue
+        }
+
         var botpath = path.join(dir.path, id)
         var pins = path.join(botpath, 'pins.dat')
         var state = path.join(botpath, 'state.dat')
