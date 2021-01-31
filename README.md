@@ -179,7 +179,7 @@ Put the above in a file called `controller.py` and run
 
 from a terminal to control the robot. You should see it move forward in the user interface. Type `Ctrl+C` to terminate the controller. Note that the robot will continue move forward when the controller is terminated because the state of the motor pins remains the same. Use the *Stop* button in the user interface to stop the simulation.
 
-## Controlling the robot from Javascript.
+## Controlling the robot from Javascript
 
 If you are running this code from a different project directory, you'll need to run 
 ```sh
@@ -272,7 +272,7 @@ Sample code for the above Python and Javascript controllers is available in the 
 
 ## Controlling the robot from C++
 
-Note that the C++ development environment is a bit more challenging to setup that the Javascript and Python environments. In particular, you will need to install the [Boost C++ Libraries](https://www.boost.org/) to use Boost's [interprocess](https://www.boost.org/doc/libs/1_75_0/doc/html/interprocess.html) communication facilities. You can find instructions on how to compile and install Boost for your platform and C++ compiler in the [Boost documentation](https://www.boost.org/doc/libs/1_75_0/more/getting_started/). 
+Note that the C++ development environment is a bit more challenging to set up that the Javascript and Python environments. In particular, you will need to install the [Boost C++ Libraries](https://www.boost.org/) to use Boost's [interprocess](https://www.boost.org/doc/libs/1_75_0/doc/html/interprocess.html) communication facilities. You can find instructions on how to compile and install Boost for your platform and C++ compiler in the [Boost documentation](https://www.boost.org/doc/libs/1_75_0/more/getting_started/). 
 
 Once Boost is installed, you can refer to the sample code in `samples\controller.cpp` to get started. The command for compiling and linking this file with the Visual C++ Terminal is:
 ```
