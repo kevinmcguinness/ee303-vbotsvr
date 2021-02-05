@@ -102,7 +102,6 @@ To set the phase of the left motor to forward, you could write:
 
 ```python
 pins[37] = 1
-pins.flush()
 ```
 
 It is a good idea to encapsulate this in functions so that it looks more like what you would do on the MSP432. E.g. you could write your `analogRead` and `analogWrite` functions as follows:

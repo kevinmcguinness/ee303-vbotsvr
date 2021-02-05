@@ -30,9 +30,6 @@ class BotState(object):
     def orientation(self, val):
         self._mem[2] = val
 
-    def flush(self):
-        self._mem.flush()
-
     def __repr__(self):
         return str(self._mem)
     
