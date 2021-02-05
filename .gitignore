@@ -2,6 +2,7 @@
 __pycache__
 bak
 bots
+tmp
 .vs
 *.obj
 *.exe

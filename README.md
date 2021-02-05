@@ -19,7 +19,7 @@ if you have [git](https://github.com/kevinmcguinness/ee303-vbotsvr.git) installe
 
 ## Setup
 
-Run the following command from an terminal to install the necessary Python libraries. You may need to use the Anaconda Prompt to do this if you are using the Anaconda Python distribution. Change directory to where you downloaded the code before running the command.
+Run the following command from an terminal to install the necessary Python libraries (use the Anaconda Prompt on Windows). You may need to use the Anaconda Prompt to do this if you are using the Anaconda Python distribution. Change directory to where you downloaded the code before running the command.
 
 ```sh
     pip install -r requirements.txt

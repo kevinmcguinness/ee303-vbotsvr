@@ -135,7 +135,7 @@ app.post('/api/start', (req, res) => {
     bot.process = process
 
     process.on('exit', function(code) {
-        console.log(`bot ${bot.id} pid ${bot.process.pid} terminated with code ${code}`)
+        console.log(`bot ${bot.id} terminated with code ${code}`)
         delete bot.process
     })
 
