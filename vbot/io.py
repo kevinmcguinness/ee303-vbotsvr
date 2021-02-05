@@ -31,7 +31,7 @@ def digital_write(pin, value):
     if value not in (HIGH, LOW):
         raise ValueError("bad digital write value")
     pins[pin] = value
-    pins.flush()
+    # pins.flush()
 
 
 def digital_read(pin):
@@ -46,7 +46,7 @@ def analog_write(pin, value):
     if value > 1023:
         raise ValueError("bad analog write value (>1023)")
     pins[pin] = value
-    pins.flush()
+    # pins.flush()
 
 
 def analog_read(pin):
