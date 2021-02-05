@@ -19,7 +19,7 @@ if you have [git](https://github.com/kevinmcguinness/ee303-vbotsvr.git) installe
 
 ## Setup
 
-Run the following command from an terminal to install the necessary Python libraries. You may need to use the Anaconda Prompt to do this if you are using the Anaconda Python distribution.
+Run the following command from an terminal to install the necessary Python libraries. You may need to use the Anaconda Prompt to do this if you are using the Anaconda Python distribution. Change directory to where you downloaded the code before running the command.
 
 ```sh
     pip install -r requirements.txt
@@ -30,6 +30,18 @@ Also install the necessary node modules. In the terminal, navigate to the direct
 ```sh
     npm install
 ```
+
+The above may fail if you do not have a C/C++ compiler installed. The error in the terminal should provide information on how to proceed.
+
+## Creating a new simulated bot
+
+Run the following Python command to create a new bot with id `001`
+
+```sh
+    python simulate.py --bot-id 001 --timeout 0
+```
+
+The folder `bots` should now have a subfolder called `001` containing two files: `pins.dat` and `state.dat`.
 
 ## Running the server
 
@@ -42,16 +54,6 @@ Run the following command from a terminal:
 Point your browser at `http://localhost:8082` to view the user interface.
 
 ![Screenshot](res/screenshot.png)
-
-## Creating a new simulated bot
-
-Run the following Python command to create a new bot with id `001`
-
-```sh
-    python simulate.py --bot-id 001 --timeout 0
-```
-
-The folder `bots` should now have a subfolder called `001` containing two files: `pins.dat` and `state.dat`.
 
 ## Starting and stopping a simulated bot
 

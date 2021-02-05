@@ -15,7 +15,6 @@ def analogWrite(pin, value):
     if value < 0 or value > 1023:
         raise ValueError
     pins[pin] = value
-    pins.flush()
 
 def digitalRead(pin):
     return pins[pin]
@@ -24,7 +23,6 @@ def digitalWrite(pin, value):
     if value not in (0, 1):
         raise ValueError
     pins[pin] = value
-    pins.flush()
 
 
 def loop():
